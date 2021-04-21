@@ -50,7 +50,7 @@ var showPopUp = function showPopUp() {
 
 var cookieConsent = function cookieConsent() {
   var storageType = cookieStorage;
-  var consentPropertyName = 'amasa_consent';
+  var consentPropertyName = 'company_consent';
 
   var shouldShowPopup = function shouldShowPopup() {
     return !storageType.getItem(consentPropertyName);

@@ -21,7 +21,7 @@ const showPopUp = function(show=false) {
 
 const cookieConsent = function() {
    const storageType = cookieStorage;
-   const consentPropertyName = 'amasa_consent'
+   const consentPropertyName = 'company_consent'
 
    const shouldShowPopup = () => !storageType.getItem(consentPropertyName)
    const saveToStorage = () => storageType.setItem(consentPropertyName, true)
