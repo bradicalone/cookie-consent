@@ -1,0 +1,120 @@
+$title-h1: #ffbb80;
+$content-color: #ffe6cc;
+$background-color: #1c1c1c;
+$border-color: #da7645;
+body {
+    font-size: .9rem;
+}
+
+.c-cookie {
+    position: fixed;
+    bottom: 65px;
+    left: 25px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    color: $content-color;
+    overflow: hidden;
+    transform: translateX(-525px);
+    transition: transform .5s ease;
+    z-index: 1000;
+
+    .content-translate {
+        overflow: hidden;
+        transition: transform .5s ease;
+        border-radius: 8px 8px 0 0;
+    }
+    .content {
+        padding: 8px;
+        background: $background-color;
+        position: relative;
+
+    }
+    p.top-text {
+        max-width: 77%;
+    }
+    .cookie-img {
+        position: absolute;
+        width: 324px;
+        top: -11px;
+        right: -10px;
+        opacity: .9;
+    }
+    .policy-content-close {
+        position: absolute;
+        right: 5px;
+        top: 15px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: transform .2s ease-in-out;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    .policy-content {
+        position: relative;
+        padding-bottom: 34px;
+    }
+    h1 {
+        color: $title-h1;
+        margin-bottom: 1.5rem;
+    }
+    
+}
+
+.c-select {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-top: 1px solid $border-color;
+    background: $background-color;
+    
+    span {
+        flex: 1 1 50%;
+        padding: 10px 0;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    span:nth-child(2) {
+        background: $border-color;
+        color: #fff;
+        border-left: 1px solid $border-color;
+        &:hover {
+            background: $background-color;
+            color: #79532c;
+        }
+    }
+}
+
+.cookie-toggle {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    width: 35px;
+    height: 35px;
+
+    i {
+        position: absolute;
+        font-size: 35px;
+        color: #603611;
+        -webkit-text-stroke: 2px $border-color;
+    }
+}
+
+@media (max-width: 530px) { 
+    .c-cookie {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        max-width: 100%;
+        .cookie-img {
+            width: 285px;
+            top: -17px;
+        }
+    }
+}
