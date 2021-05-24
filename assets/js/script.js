@@ -42,26 +42,26 @@ var showPopUp = function showPopUp() {
   var style = cookiePopUp.style.transform;
 
   if (!style || show) {
-    cookiePopUp.style.transform = "translate3d(".concat(0, "px, 0,0)");
-  } else {
-    cookiePopUp.removeAttribute('style');
+    return cookiePopUp.style.transform = "translate3d(".concat(0, "px, 0,0)");
   }
+
+  cookiePopUp.removeAttribute('style');
 };
 
 var cookieConsent = function cookieConsent() {
-  var storageType = cookieStorage;
-  var consentPropertyName = 'company_consent';
+  var consentPropertyName = 'amasa_consent';
 
   var shouldShowPopup = function shouldShowPopup() {
-    return !storageType.getItem(consentPropertyName);
+    return !cookieStorage.getItem(consentPropertyName);
   };
 
-  var saveToStorage = function saveToStorage() {
-    return storageType.setItem(consentPropertyName, true);
+  var saveToStorage = function saveToStorage(_boolean) {
+    return cookieStorage.setItem(consentPropertyName, _boolean);
   };
 
   if (shouldShowPopup()) {
     showPopUp(true);
+    saveToStorage(true); // On page load automtically set cookie true
   }
 
   document.querySelectorAll('.select-ok, .select-privacy-policy, .policy-content-close').forEach(function (btn) {
@@ -72,13 +72,23 @@ var cookieConsent = function cookieConsent() {
         return privacyPolicy.showPrivacyPolicy();
       }
 
-      saveToStorage(); // Add consent true to cookie
-
       showPopUp(); // Close popup
 
       privacyPolicy.showPrivacyPolicy(true); // Closes privacy content only if opened (true)
     };
   });
+  var textAccepted = document.querySelector('.cookie-accepted');
+
+  document.querySelector('.switch-input').onclick = function (e) {
+    if (e.target.checked) {
+      saveToStorage(true);
+      textAccepted.textContent = 'ACCEPT';
+    } else {
+      saveToStorage(false);
+      textAccepted.textContent = 'DECLINE';
+    }
+  };
+
   if (window.innerWidth <= 530) window.onresize = function () {
     return privacyPolicy.startStyles();
   };
@@ -108,10 +118,10 @@ var privacyPolicy = {
   }
 };
 
-window.onload = function () {
-  privacyPolicy.startStyles(cookieConsent);
-};
-
 document.querySelector('.show-cookie').onclick = function (e) {
   return showPopUp();
+};
+
+window.onload = function () {
+  privacyPolicy.startStyles(cookieConsent);
 };

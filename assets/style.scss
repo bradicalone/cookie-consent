@@ -2,6 +2,7 @@ $title-h1: #ffbb80;
 $content-color: #ffe6cc;
 $background-color: #1c1c1c;
 $border-color: #da7645;
+
 body {
     font-size: .9rem;
 }
@@ -22,16 +23,21 @@ body {
     .content-translate {
         overflow: hidden;
         transition: transform .5s ease;
-        border-radius: 8px 8px 0 0;
+        border-radius: 0px 8px 0px 0px;
     }
     .content {
         padding: 8px;
         background: $background-color;
         position: relative;
-
+        border-radius: 8px 8px 0 0;
     }
     p.top-text {
         max-width: 77%;
+    }
+    .select-privacy-policy.underline {
+        text-decoration: underline;
+        color: $title-h1;
+        cursor: pointer;
     }
     .cookie-img {
         position: absolute;
@@ -43,7 +49,7 @@ body {
     .policy-content-close {
         position: absolute;
         right: 5px;
-        top: 15px;
+        top: -4px;
         cursor: pointer;
         font-weight: 500;
         transition: transform .2s ease-in-out;
@@ -54,12 +60,106 @@ body {
     .policy-content {
         position: relative;
         padding-bottom: 34px;
+        padding-top: 25px;
     }
     h1 {
         color: $title-h1;
         margin-bottom: 1.5rem;
     }
-    
+}
+
+.c-toggle-accept {
+    display: flex;
+    padding: 7px 5px;
+    border: 2px solid #a7937f;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    .toggle-cookie {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        p {
+            margin-bottom: 3px;
+        }
+    }
+    .switch {
+        position: relative;
+        display: block;
+        width: 85px;
+        height: 30px;
+        padding: 4px;
+        margin: 0 10px;
+        background: linear-gradient(to bottom, #2f2f2f, #6b6b6b 60px);
+        background-image: -webkit-linear-gradient(top, #2f2f2f, #6b6b6b 60px);
+        border-radius: 25px;
+        box-shadow: inset 0 -.5px #777777,
+                    inset 0 0px 3px rgba(0, 0, 0, 0.72),
+                    0px -1px 19px 2px rgba(225, 225, 225,.35);
+        cursor: pointer;
+        box-sizing: content-box;
+    }
+    .switch-input {
+        position: absolute;
+        top: 0;
+        transform: translateX(0px);
+        opacity: 0;
+        box-sizing: content-box;
+        &:checked ~ .switch-handle {
+            transform: translateX(54px);
+            box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.6),
+            inset 0px 0.5 rgba(255,255,255, .2);
+        }
+    }
+    .switch-input:checked ~ .switch-label {
+        background: #F6AE55;;
+    }
+    .switch-label {
+        position: relative;
+        display: block;
+        height: inherit;
+        font-size: 12px;
+        background: #da7645;
+        border-radius: inherit;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), inset 0 0 2px rgba(0, 0, 0, 0.5);
+        box-sizing: content-box;
+    }
+
+    .switch-handle {
+        position: absolute;
+        top: 2.5px;
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(to bottom, #545454 40%, #191919);
+        background-image: -webkit-linear-gradient(top, #545454 40%, #191919);
+        border-radius: 100%;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -6.5px 0 0 -6.5px;
+            width: 13px;
+            height: 13px;
+            background: linear-gradient(to bottom, #333, #9c9c9c 18px);
+            background-image: -webkit-linear-gradient(top, #333, #9c9c9c 18px);
+            border-radius: 50%;
+            box-shadow: inset 0 1px rgba(225, 225, 225, 0.02),
+                        inset 0 .5px rgba(41, 41, 41, 0.35),
+                        0px -0.5px rgba(255, 255, 255, .07);
+        }
+    }
+    .switch-handle,
+    .switch-label {
+        transition: All 0.3s ease;
+        -webkit-transition: All 0.3s ease;
+        -moz-transition: All 0.3s ease;
+        -o-transition: All 0.3s ease;
+    }
+    .toggle-content p {
+        margin-left: 25px;
+        margin-bottom: 0;
+    }
 }
 
 .c-select {
@@ -85,7 +185,7 @@ body {
         border-left: 1px solid $border-color;
         &:hover {
             background: $background-color;
-            color: #79532c;
+            color: $title-h1;
         }
     }
 }
@@ -102,16 +202,22 @@ body {
         font-size: 35px;
         color: #603611;
         -webkit-text-stroke: 2px $border-color;
+        cursor: pointer;
+        transition: transform .3s ease;
+        &:hover {
+            transform: scale(1.05)
+        }
     }
 }
 
-@media (max-width: 530px) { 
+@media (max-width: 530px) {
     .c-cookie {
         left: 0;
         right: 0;
         bottom: 0;
         width: auto;
         max-width: 100%;
+        border-radius: 0;
         .cookie-img {
             width: 285px;
             top: -17px;
